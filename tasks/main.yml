@@ -9,13 +9,19 @@
   - "ansible_distribution_release: {{ ansible_distribution_release }}"
   - "ansible_distribution_version: {{ ansible_distribution_version }}"
   - "ansible_distribution_major_version: {{ ansible_distribution_major_version }}"
+
+- name: Override package name for Ubuntu.
+  ansible.builtin.set_fact:
+    kde_spectacle: kde-spectacle
+  when: ansible_os_family == 'Debian'
+
 - name: Install Kde Packages
-  become: yes
+  become: true
   ansible.builtin.package:
     state: present
     name:
     - kate
-    - spectacle
+    - "{{ kde_spectacle }}"
     - ark
     - konsole
     - dolphin
