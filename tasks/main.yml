@@ -139,6 +139,15 @@
     no_extra_spaces: yes
     mode: 0600
 
+# In Fedora it's not installed by default
+- name: Ensure xdg-mime is available
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - xdg-utils
+  when: ansible_os_family == 'RedHat'
+
 - name: Ensure xdg mime default application is set
   ansible.builtin.command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
   changed_when: False
