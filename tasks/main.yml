@@ -204,3 +204,60 @@
     - section: Window
       option: Height
       value: 60
+
+- name: Install kwalletmanager and ksshaskpass
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - kwalletmanager
+    - ksshaskpass
+
+- name: Create autostart directory
+  ansible.builtin.file:
+    path: '~/.config/autostart'
+    mode: 0755
+    state: directory
+
+- name: Copy ssh-add.desktop
+  ansible.builtin.copy:
+    src: "kde-ssh/ssh-add.desktop"
+    dest: "~/.config/autostart/"
+    mode: 0644
+
+# inspired by AUR package plasma-workspace-agent-ssh
+
+- name: Create /etc/xdg/plasma-workspace/env/
+  become: true
+  ansible.builtin.file:
+    path: '/etc/xdg/plasma-workspace/env/'
+    mode: 0755
+    state: directory
+
+- name: Create /etc/xdg/plasma-workspace/shutdown/
+  become: true
+  ansible.builtin.file:
+    path: '/etc/xdg/plasma-workspace/shutdown/'
+    mode: 0755
+    state: directory
+
+- name: Copy ssh-agent-startup.sh
+  become: true
+  ansible.builtin.copy:
+    src: "kde-ssh/ssh-agent-startup.sh"
+    dest: "/etc/xdg/plasma-workspace/env/"
+    mode: 0755
+
+- name: Copy askpass.sh
+  become: true
+  ansible.builtin.copy:
+    src: "kde-ssh/askpass.sh"
+    dest: "/etc/xdg/plasma-workspace/env/"
+    mode: 0755
+
+- name: Copy ssh-agent-shutdown.sh
+  become: true
+  ansible.builtin.copy:
+    src: "kde-ssh/ssh-agent-shutdown.sh"
+    dest: "/etc/xdg/plasma-workspace/shutdown/"
+    mode: 0755
