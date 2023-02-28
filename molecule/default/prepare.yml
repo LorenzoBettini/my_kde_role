@@ -1,0 +1,8 @@
+---
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install python in Arch
+      ansible.builtin.raw: pacman -Sy --noconfirm --needed python sudo
+      changed_when: false

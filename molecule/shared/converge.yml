@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include lorenzobettini.my_kde_role"
+      ansible.builtin.include_role:
+        name: "lorenzobettini.my_kde_role"
