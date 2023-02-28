@@ -10,9 +10,14 @@
   - "ansible_distribution_version: {{ ansible_distribution_version }}"
   - "ansible_distribution_major_version: {{ ansible_distribution_major_version }}"
 
-- name: Override package name for Ubuntu.
+- name: Override spectacle package name for Ubuntu.
   ansible.builtin.set_fact:
     kde_spectacle: kde-spectacle
+  when: ansible_os_family == 'Debian'
+
+- name: Override kvantum package name for Ubuntu.
+  ansible.builtin.set_fact:
+    kvantum: qt5-style-kvantum
   when: ansible_os_family == 'Debian'
 
 - name: Install Kde Packages
@@ -34,8 +39,17 @@
     - kio-gdrive
     - dolphin-plugins
     - plasma-systemmonitor
-    - kdeplasma-addons
     - kcalc
     - plasma-workspace-wallpapers
-    - kvantum
+    - "{{ kvantum }}"
 #    - latte-dock # it's not maintained anymore
+
+# In Ubuntu doesn't seem to be there
+# maybe it's not needed
+- name: Install Kde Addons
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - kdeplasma-addons
+  when: ansible_os_family != 'Debian'
