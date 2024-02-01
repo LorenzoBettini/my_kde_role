@@ -212,7 +212,7 @@
       value: Apricot.profile
     - section: Window
       option: Height
-      value: 60
+      value: 70
 
 - name: Install kwalletmanager and ksshaskpass
   become: true
