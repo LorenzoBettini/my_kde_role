@@ -1,0 +1,22 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: true
+  tasks:
+  - name: Get current user's home
+    ansible.builtin.shell: >
+      set -o pipefail && \
+      grep -E "^{{ ansible_user_id }}:" /etc/passwd | awk -F: '{ print $6 }'
+    register: user_home
+    args:
+      executable: /bin/bash
+    changed_when: false
+  - name: Check if ~/.local/share/konsole is present
+    ansible.builtin.stat:
+      path: "{{ user_home.stdout }}/.local/share/konsole"
+    register: result
+  - name: Assert ~/.local/share/konsole is NOT present
+    ansible.builtin.assert:
+      that: "not result.stat.exists"
