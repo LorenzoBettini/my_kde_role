@@ -2,3 +2,4 @@
 # vars file for my_kde_role
 kde_spectacle: spectacle
 kvantum: kvantum
+with_konsole_profiles: true

@@ -185,12 +185,14 @@
     path: '~/.local/share/konsole'
     mode: 0775
     state: directory
+  when: with_konsole_profiles
 
 - name: Copy Konsole profiles
   ansible.builtin.copy:
     src: "konsole/"
     dest: "~/.local/share/konsole/"
     mode: 0600
+  when: with_konsole_profiles
 
 - name: Yakuake preferences
   community.general.ini_file:
