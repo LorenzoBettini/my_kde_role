@@ -54,12 +54,14 @@
     - kdeplasma-addons
   when: ansible_os_family != 'Debian'
 
-- name: Meta for Expose (Toggle Present Windows)
+# Previously was: Meta for Expose (Toggle Present Windows)
+# invokeShortcut,Expose
+- name: Meta for Overview effect
   community.general.ini_file:
     path: ~/.config/kwinrc
     section: ModifierOnlyShortcuts
     option: Meta
-    value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Expose
+    value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Overview
     no_extra_spaces: yes
     mode: 0600
 
