@@ -77,7 +77,7 @@
   - section: Plugins
     option: kwin4_effect_squashEnabled
     value: 'false'
-  - section: Effect-MagicLamp
+  - section: Effect-magiclamp
     option: AnimationDuration
     value: '400'
   - section: Plugins
