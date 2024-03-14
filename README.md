@@ -53,3 +53,5 @@ To avoid the copying of Konsole profiles, e.g., when those are handled as dotfil
       vars:
         with_konsole_profiles: false
 ```
+
+Similarly, to avoid modifying `.ini` files (e.g., `katerc`, `kglobalshortcutsrc`, etc.), use `modify_ini_files: false`.

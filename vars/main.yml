@@ -2,4 +2,7 @@
 # vars file for my_kde_role
 kde_spectacle: spectacle
 kvantum: kvantum
+# whether to copy also Konsole profiles
 with_konsole_profiles: true
+# whether to modify .ini files
+modify_ini_files: true

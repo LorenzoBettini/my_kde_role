@@ -64,6 +64,7 @@
     value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Overview
     no_extra_spaces: yes
     mode: 0600
+  when: modify_ini_files
 
 - name: Desktop effects
   community.general.ini_file:
@@ -83,6 +84,7 @@
   - section: Plugins
     option: magiclampEnabled
     value: 'true'
+  when: modify_ini_files
 
 - name: Switcher
   community.general.ini_file:
@@ -99,6 +101,7 @@
   - section: TabBox
     option: LayoutName
     value: compact
+  when: modify_ini_files
 
 - name: Ctrl+Alt+T for Konsole
   community.general.ini_file:
@@ -113,6 +116,7 @@
     value: Konsole
   - option: _launch
     value: Ctrl+Alt+T,Ctrl+Alt+T,Konsole
+  when: modify_ini_files
 
 - name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
   community.general.ini_file:
@@ -122,6 +126,7 @@
     value: Meta+Z\tLaunch (C)\tCtrl+F10,Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
     no_extra_spaces: yes
     mode: 0600
+  when: modify_ini_files
 
 - name: Meta+Z for ExposeClass (Toggle Present Windows (Window class))
   community.general.ini_file:
@@ -131,6 +136,7 @@
     value: Ctrl+F7\tMeta+X,Ctrl+F7,Toggle Present Windows (Window class)
     no_extra_spaces: yes
     mode: 0600
+  when: modify_ini_files
 
 - name: Alt+\ (Walk Through Windows of Current Application)
   community.general.ini_file:
@@ -140,6 +146,7 @@
     value: Alt+\\\\,Alt+`,Walk Through Windows of Current Application
     no_extra_spaces: yes
     mode: 0600
+  when: modify_ini_files
 
 # In Fedora it's not installed by default
 - name: Ensure xdg-mime is available
@@ -181,6 +188,7 @@
     - section: KTextEditor Document
       option: Swap File Mode
       value: 2
+  when: modify_ini_files
 
 - name: Create Konsole profile directory
   ansible.builtin.file:
@@ -217,6 +225,7 @@
     - section: Window
       option: Height
       value: 70
+  when: modify_ini_files
 
 - name: Install kwalletmanager and ksshaskpass
   become: true
